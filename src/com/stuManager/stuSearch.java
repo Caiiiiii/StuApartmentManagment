@@ -1,4 +1,4 @@
-package com.Login;
+package com.stuManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import MySql.DbControl;
-
-public class LoginVerification extends HttpServlet {
+public class stuSearch extends HttpServlet {
 
 	/**
 		 * Destruction of the servlet. <br>
@@ -32,7 +30,10 @@ public class LoginVerification extends HttpServlet {
 		 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		doPost(request,response);
+			String value = request.getParameter("option");
+			String iCondition = request.getParameter("inputCondition");
+			
+			System.out.print(value+","+iCondition);
 	}
 
 	/**
@@ -47,35 +48,7 @@ public class LoginVerification extends HttpServlet {
 		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("utf-8");  
-        response.setContentType("text/html; charset=utf-8");  
-        PrintWriter out = response.getWriter(); 
-        
-		String mUserName = request.getParameter("managerUserName");
-		String mPassWord = request.getParameter("managerPassWord");
-		
-		if(mUserName==null||mPassWord==null){
-			return ;
-		}
-		 // System.out.print( mUserName+","+mPassWord);
-
-		DbControl db = new DbControl();
-		if(db.Login(mUserName,mPassWord)){
-
-				if(db.Identity(mUserName)==1){
-						out.print(3);
-					           response.sendRedirect("managerMain.jsp"); //此处写跳转链接
-				
-							}else{
-								out.print(2);             // 2为账号没有权限
-							}
-				}
-			else{
-					out.print(1);
-				}
-		
-		
-		
+		doGet(request,response);
 	}
 
 	/**

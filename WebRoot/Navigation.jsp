@@ -10,7 +10,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>jQuery和CSS3动感手风琴多级列表树菜单</title>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/default.css">
 	<link rel='stylesheet prefetch' href='css/foundation.css'>
@@ -19,8 +18,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
 </head>
-<body>
-	<div class="htmleaf-container">
+
+<style type="text/css">
+	.bodyheight{
+		height: 600px;
+	}
+</style>
+
+<body class="bgcolor-3">
+	<div class="htmleaf-container" >
 		
 		<div class="htmleaf-content bgcolor-3">
 			<!-- This is mtree list -->
@@ -181,7 +187,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        'nix'
 	    ];
 	    mtree.addClass(skins[0]);
-	    $('body').prepend('<div class="mtree-skin-selector"><ul class="button-group radius"></ul></div>');
+	   
 	    var s = $('.mtree-skin-selector');
 	
 	    s.find('button.skin').each(function (index) {
