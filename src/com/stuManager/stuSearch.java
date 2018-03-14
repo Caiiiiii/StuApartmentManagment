@@ -2,14 +2,23 @@ package com.stuManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Bean.StuBena;
+import MySql.DbControl;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 
 public class stuSearch extends HttpServlet {
-
+	
 	/**
 		 * Destruction of the servlet. <br>
 		 */
@@ -28,12 +37,40 @@ public class stuSearch extends HttpServlet {
 		 * @throws ServletException if an error occurred
 		 * @throws IOException if an error occurred
 		 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 			String value = request.getParameter("option");
 			String iCondition = request.getParameter("inputCondition");
 			
-			System.out.print(value+","+iCondition);
+			response.setCharacterEncoding("utf-8"); 
+			response.setHeader("Charset", "utf-8");
+			response.setContentType("text/html; charset=utf-8");  
+			DbControl db = new DbControl();
+
+			if(value.equals("1")){  //学号查询判断
+				List list = db.stuNoInfo(Integer.valueOf(iCondition));
+				PrintWriter out = response.getWriter();
+				if(list!=null){
+						JSONArray jsonArr  = JSONArray.fromObject(list); //对list封装
+						JSONObject json  = new JSONObject();       
+						json.put("stuBena", jsonArr);
+						out.write(json.toString());
+						out.close();
+					}else{
+						out.write("null");
+					}
+			}else if(value.equals("2")){                 //姓名查询判断
+					List list = db.stuNameInfo(iCondition);
+					PrintWriter out = response.getWriter();
+					if(list!=null){	
+						JSONArray jsonArr  = JSONArray.fromObject(list); //对list封装
+						JSONObject json  = new JSONObject();       
+						json.put("stuBena", jsonArr);
+						out.write(json.toString());
+						out.close();
+					}else{
+						out.write("null");
+					}
+			}
 	}
 
 	/**

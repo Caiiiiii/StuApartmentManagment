@@ -19,5 +19,11 @@
 			<attribute name="owner.project.facets" value="jst.web.jstl"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/CYQ/Desktop/jsonobject/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CYQ/Desktop/jsonobject/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CYQ/Desktop/jsonobject/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CYQ/Desktop/jsonobject/commons-logging.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CYQ/Desktop/jsonobject/ezmorph-1.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CYQ/Desktop/jsonobject/json-lib-2.1-jdk15.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

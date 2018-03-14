@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class=mtree>
 			  <li><a href="#">学生信息管理</a>
 			    <ul>
-			      <li><a href="#">学生查询</a></li>
+			      <li><a href="stuSearch.jsp" target="mainFrame">学生查询</a></li>
 			      <li><a href="#">学生录入</a></li>
 			      <li><a href="#">学生删除</a></li>
 			     
