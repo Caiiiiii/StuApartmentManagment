@@ -18,6 +18,27 @@
     <servlet-name>test</servlet-name>
     <servlet-class>com.stuManager.test</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>checkStuNo</servlet-name>
+    <servlet-class>com.stuManager.checkStuNo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>checkDromSlot</servlet-name>
+    <servlet-class>DromManager.checkDromSlot</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>stuAdd</servlet-name>
+    <servlet-class>com.stuManager.stuAdd</servlet-class>
+  </servlet>
+
+
+
 
 
   <servlet-mapping>
@@ -31,5 +52,17 @@
   <servlet-mapping>
     <servlet-name>test</servlet-name>
     <url-pattern>/servlet/test</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>checkStuNo</servlet-name>
+    <url-pattern>/servlet/checkStuNo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>checkDromSlot</servlet-name>
+    <url-pattern>/servlet/checkDromSlot</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>stuAdd</servlet-name>
+    <url-pattern>/servlet/stuAdd</url-pattern>
   </servlet-mapping>
 </web-app>

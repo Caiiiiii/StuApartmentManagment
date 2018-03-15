@@ -1,5 +1,7 @@
 package MySql;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,4 +72,63 @@ public class DbControl {
 			return (list.size()>=1)?list:null;
 	}
 		
+		public boolean hadThisMan(String stuNo){                //判断该学号是否被注册
+			db.createConn();
+			String sql = "select * from stuinfo where stuNo ="+Integer.valueOf(stuNo);
+			db.query(sql);
+			if(db.next()){
+				return true;
+			}
+			return false;
+		}
+		
+		public String SlotIsFull(String DromNo){                    //判断是否有这个宿舍且是否有空位
+			db.createConn();
+			String sql = "select * from drominfo where dromNo ='"+DromNo+"'";
+			db.query(sql);
+			if(db.next()){
+					if(Integer.valueOf(db.getValue("freeSlot"))!=0){
+						return "haveSlot";
+					}else{
+						return "haventSlot";
+					}
+			}else{
+				return "haventDrom";
+			}
+		}
+		
+		public boolean stuAdd(StuBena sb){
+			db.createConn();
+			String sql = "insert into stuinfo(stuNo,stuName,stuSex,stuClass,stuDromNo) values(?,?,?,?,?)";
+			try {
+				PreparedStatement ps =db.add(sql);
+				ps.setInt(1, sb.getStuNo());
+				ps.setString(2, sb.getStuName());
+				ps.setString(3, sb.getStuSex());
+				ps.setString(4, sb.getSutClass());
+				ps.setString(5, sb.getStuDromNo());
+				ps.execute();
+				ps.close();
+				return true;
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			return false;	
+		}
+		
+		public void reduceSlot(String dromNo){                //宿舍剩余人数减1
+			db.createConn();
+			int freeSlot = 0;
+			String sql = "select * from drominfo where dromNo ='"+dromNo+"'";
+			db.query(sql);
+			if(db.next()){
+				 freeSlot = Integer.valueOf(db.getValue("freeSlot")) - 1;
+				}		
+			db.closeStm();
+			db.closeRs();
+			
+			String newSql = "update drominfo set freeSlot ="+freeSlot+" where dromNo ='"+dromNo+"'";
+			db.update(newSql);
+		}
 }

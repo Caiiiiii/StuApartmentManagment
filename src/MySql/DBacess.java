@@ -3,6 +3,7 @@ package MySql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,7 +17,7 @@ public class DBacess {
 	private Connection conn;
 	private Statement stm;
 	private ResultSet rs;
-	
+	private  PreparedStatement ps;
 		/**
 		 * 封装mysql基本语句*/
 	public boolean createConn(){     ///mysql连接
@@ -87,6 +88,19 @@ public class DBacess {
 			}
 		
 		return value;
+	}
+	
+	public PreparedStatement add(String sql){   //增加数据
+		if(conn!=null){
+			try {
+				ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+				return ps;
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 	
 	public void closeConn(){    //关闭连接

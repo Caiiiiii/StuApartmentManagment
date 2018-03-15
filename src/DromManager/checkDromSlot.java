@@ -1,4 +1,4 @@
-package com.stuManager;
+package DromManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class test extends HttpServlet {
+import MySql.DbControl;
+
+public class checkDromSlot extends HttpServlet {
 
 	/**
 		 * Destruction of the servlet. <br>
@@ -32,15 +34,20 @@ public class test extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
+		DbControl db = new DbControl();
+	
+		String DromNo = request.getParameter("DromNo");
+		if(DromNo!=null&&!DromNo.equals("")){
+				switch (db.SlotIsFull(DromNo)){
+				case "haveSlot": out.print("1");break;
+				case "haventSlot":out.print("2");break;
+				case "haventDrom":out.print("3");break;
+				default:out.print("error1");
+				}
+		}else{
+			out.print("error2");
+		}
+		
 		out.flush();
 		out.close();
 	}
@@ -57,19 +64,7 @@ public class test extends HttpServlet {
 		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the POST method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+			doGet(request,response);
 	}
 
 	/**
