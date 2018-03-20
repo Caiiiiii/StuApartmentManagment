@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>   
     </table>  
 </div>
-<div id="showError" style=" display: none; text-align: center;">查询信息有误</div>
+<div id="showError" style=" display: none; text-align: center;">查询信息不存在</div>
 <div id="showNull" style=" display: none; text-align: center;">不能为空</div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  		 	for(var a in sd.DromBean){
 		  		 		i++;
 
-		  		 		$("#table tbody").append('<tr><td></td><td></td><td></td><td></td><td></td><td><button class="btn btn-danger" id="stuDel" data-toggle="modal" data-target="#myModal" value="'+sd.DromBean[a].dromNo+'" onclick="btuDel(this);">删除</button></td></tr>');
+		  		 		$("#table tbody").append('<tr><td></td><td></td><td></td><td></td><td></td><td>  <button class="btn btn-danger" id="stuDel" data-toggle="modal" data-target="#myModal" value="'+sd.DromBean[a].dromNo+'" onclick="btuDel(this);">删除</button></td></tr>');
 
 		  		 			table.rows[i].cells[count].innerHTML = sd.DromBean[a].dromNo;
 		  		 			table.rows[i].cells[count+1].innerHTML = sd.DromBean[a].building;
@@ -112,14 +112,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 
 	function btuDel(obj){
-			$("#showName").text("是否删除宿舍号为"+obj.value+"的学生的信息?");
+			$("#showName").text("是否删除宿舍号为"+obj.value+"的宿舍的信息?");
 			$("#checkOn").click(function(){
 				$.ajax({
 					type:'GET',
 					url:'servlet/dromDelete?dromNo='+obj.value,
 					success:function(data){
 						if(data == "1"){
+							
 							verify();
+
 						}
 						else if (data == "2"){
 	
