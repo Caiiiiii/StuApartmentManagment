@@ -2,6 +2,7 @@ package DromManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -45,6 +46,11 @@ public class dromDelete extends HttpServlet {
 		DbControl db = new DbControl();
 
 		if(db.hadThisRoom(dromNo)){
+				List<String> lists =db.stuLiveDrom(dromNo);
+				for(String l :lists){
+					db.backDrom(l);
+				}
+				db.deleteElectricTable(dromNo);
 				db.deleteDrom(dromNo);		
 				out.print("1");//…æ≥˝Àﬁ…·–≈œ¢
 		}else{

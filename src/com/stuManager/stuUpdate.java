@@ -79,12 +79,12 @@ public class stuUpdate extends HttpServlet {
 		response.setCharacterEncoding("utf-8"); 
 		if(DromNo.equals(db.stuInDromNo(stuNo))){
 				db.updateStu(sb);
-				out.print("修改成功");
+				out.print("1");
 		}else{
 			db.AddSlot(db.stuInDromNo(stuNo));
 			db.reduceSlot(DromNo);
 			db.updateStu(sb);
-			out.print("修改成功");
+			out.print("1");
 		}
 		
 	}

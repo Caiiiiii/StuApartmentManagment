@@ -43,7 +43,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>宿舍号</td>  
             <td>宿舍楼</td>  
             <td>楼层</td>
-            <td>房间</td>  
+            <td>房间</td>
+            <td>入住人数</td>
             <td>操作</td>
         </tr>   
     </table>  
@@ -93,6 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  		 			table.rows[i].cells[count+1].innerHTML = sd.DromBean[a].building;
 							table.rows[i].cells[count+2].innerHTML = sd.DromBean[a].floor;
 							table.rows[i].cells[count+3].innerHTML = sd.DromBean[a].room;
+							table.rows[i].cells[count+4].innerHTML = sd.DromBean[a].freeSlot;
 		  		 	}
 				}else if(data == "null"){
 								showNull.style.display="none";
@@ -118,8 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					type:'GET',
 					url:'servlet/dromDelete?dromNo='+obj.value,
 					success:function(data){
-						if(data == "1"){
-							
+						if(data == "1"){	
 							verify();
 
 						}
